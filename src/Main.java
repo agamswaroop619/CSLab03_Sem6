@@ -21,7 +21,7 @@ public class Main {
             Random random = new Random();
 
             for (int i = 0; i < n; i++) {
-                int randomNumber = random.nextInt();
+                int randomNumber = random.nextInt(n*2) + 1;
                 writer.write(Integer.toString(randomNumber));
                 writer.newLine();
             }
