@@ -9,20 +9,15 @@ public class Interpolation {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
 
-        // Get the specific number to search
         System.out.print("Enter the number to search: ");
         int targetNumber = scanner.nextInt();
 
-        // The filename is assumed to be "output.txt"
         String filename = "output.txt";
 
-        // Record the start time
         long startTime = System.currentTimeMillis();
 
-        // Perform Interpolation search in the sorted file
         boolean found = performInterpolationSearch(filename, targetNumber);
 
-        // Record the end time
         long endTime = System.currentTimeMillis();
 
         if (found) {
@@ -31,7 +26,6 @@ public class Interpolation {
             System.out.println("The number " + targetNumber + " was not found in the file.");
         }
 
-        // Calculate and print the time taken
         long timeTaken = endTime - startTime;
         System.out.println("Time taken: " + timeTaken + " milliseconds");
     }
@@ -44,20 +38,19 @@ public class Interpolation {
                         .mapToInt(Integer::parseInt)
                         .toArray();
 
-                // Interpolation search requires a sorted array
                 Arrays.sort(numbers);
 
                 int foundIndex = interpolationSearch(numbers, targetNumber);
 
                 if (foundIndex != -1) {
-                    return true; // Number found
+                    return true;
                 }
             }
         } catch (IOException | NumberFormatException e) {
             e.printStackTrace();
         }
 
-        return false; // Number not found
+        return false;
     }
 
     private static int interpolationSearch(int[] arr, int target) {
@@ -67,7 +60,6 @@ public class Interpolation {
         while (low <= high && target >= arr[low] && target <= arr[high]) {
             int denominator = arr[high] - arr[low];
 
-            // Check for division by zero
             if (denominator == 0) {
                 return (arr[low] == target) ? low : -1;
             }
@@ -75,7 +67,7 @@ public class Interpolation {
             int pos = low + ((target - arr[low]) * (high - low) / denominator);
 
             if (arr[pos] == target) {
-                return pos; // Element found
+                return pos;
             }
 
             if (arr[pos] < target) {
@@ -85,6 +77,6 @@ public class Interpolation {
             }
         }
 
-        return -1; // Element not found
+        return -1;
     }
 }

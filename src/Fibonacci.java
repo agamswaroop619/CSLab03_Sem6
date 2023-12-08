@@ -9,20 +9,15 @@ public class Fibonacci {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
 
-        // Get the specific number to search
         System.out.print("Enter the number to search: ");
         int targetNumber = scanner.nextInt();
 
-        // The filename is assumed to be "output.txt"
         String filename = "output.txt";
 
-        // Record the start time
         long startTime = System.currentTimeMillis();
 
-        // Perform Fibonacci search in the sorted file
         boolean found = performFibonacciSearch(filename, targetNumber);
 
-        // Record the end time
         long endTime = System.currentTimeMillis();
 
         if (found) {
@@ -31,7 +26,6 @@ public class Fibonacci {
             System.out.println("The number " + targetNumber + " was not found in the file.");
         }
 
-        // Calculate and print the time taken
         long timeTaken = endTime - startTime;
         System.out.println("Time taken: " + timeTaken + " milliseconds");
     }
@@ -44,20 +38,19 @@ public class Fibonacci {
                         .mapToInt(Integer::parseInt)
                         .toArray();
 
-                // Fibonacci search requires a sorted array
                 Arrays.sort(numbers);
 
                 int foundIndex = fibonacciSearch(numbers, targetNumber);
 
                 if (foundIndex != -1) {
-                    return true; // Number found
+                    return true;
                 }
             }
         } catch (IOException | NumberFormatException e) {
             e.printStackTrace();
         }
 
-        return false; // Number not found
+        return false;
     }
 
     private static int fibonacciSearch(int[] arr, int target) {
@@ -87,7 +80,7 @@ public class Fibonacci {
                 fibMMinus1 = fibMMinus1 - fibMMinus2;
                 fibMMinus2 = fibM - fibMMinus1;
             } else {
-                return i; // Element found
+                return i;
             }
         }
 
@@ -95,6 +88,6 @@ public class Fibonacci {
             return offset + 1;
         }
 
-        return -1; // Element not found
+        return -1;
     }
 }

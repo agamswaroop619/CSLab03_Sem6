@@ -9,20 +9,14 @@ public class Binary {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
 
-        // Get the specific number to search
         System.out.print("Enter the number to search: ");
         int targetNumber = scanner.nextInt();
 
-        // The filename is assumed to be "output.txt"
         String filename = "output.txt";
-
-        // Record the start time
         long startTime = System.currentTimeMillis();
 
-        // Perform binary search in the sorted file
         boolean found = performBinarySearch(filename, targetNumber);
 
-        // Record the end time
         long endTime = System.currentTimeMillis();
 
         if (found) {
@@ -31,7 +25,6 @@ public class Binary {
             System.out.println("The number " + targetNumber + " was not found in the file.");
         }
 
-        // Calculate and print the time taken
         long timeTaken = endTime - startTime;
         System.out.println("Time taken: " + timeTaken + " milliseconds");
     }
@@ -44,19 +37,18 @@ public class Binary {
                         .mapToInt(Integer::parseInt)
                         .toArray();
 
-                // Binary search requires a sorted array
                 Arrays.sort(numbers);
 
                 int foundIndex = Arrays.binarySearch(numbers, targetNumber);
 
                 if (foundIndex >= 0) {
-                    return true; // Number found
+                    return true;
                 }
             }
         } catch (IOException | NumberFormatException e) {
             e.printStackTrace();
         }
 
-        return false; // Number not found
+        return false;
     }
 }
